@@ -40,6 +40,7 @@ dependencies {
 
     implementation(platform("com.google.firebase:firebase-bom:32.7.1"))
     implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
 
 
 }
