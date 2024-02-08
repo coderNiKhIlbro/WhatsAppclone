@@ -3,12 +3,19 @@ package com.example.whatsappclone.fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.whatsappclone.R;
+import com.example.whatsappclone.adapters.UserAdapter;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +32,9 @@ public class chats extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    String[] usr={"Nikhil","Nisarga","Kundan","Aniket","user"};
+    ArrayList<String> arrayList= new ArrayList<String>(Arrays.asList(usr));
 
     public chats() {
         // Required empty public constructor
@@ -60,7 +70,12 @@ public class chats extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chats, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        UserAdapter adapter = new UserAdapter(arrayList,getContext()); // Create your adapter instance
+        recyclerView.setAdapter(adapter);
+        return view;
     }
 }
