@@ -19,8 +19,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whatsappclone.ContactActivity;
 import com.example.whatsappclone.R;
-import com.example.whatsappclone.ContactActivity.Contacts;
 import com.example.whatsappclone.chatDetails;
+import com.example.whatsappclone.models.User;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,10 +29,10 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHolder>{
-    ArrayList<Contacts> contactList;
+    ArrayList<User> contactList;
     Context context;
 
-    public ContactsAdapter(ArrayList<Contacts> array, Context context) {
+    public ContactsAdapter(ArrayList<User> array, Context context) {
         this.contactList = array;
         this.context = context;
     }
@@ -48,9 +48,10 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Contacts contact = contactList.get(position);
-        holder.name.setText(contact.personName);
-        holder.msg.setText(contact.mobileNumber);
+        User contact = contactList.get(position);
+        holder.name.setText(contact.getName());
+        holder.msg.setText(contact.getMobile());
+        holder.user=contact;
     }
 
     @Override
@@ -66,6 +67,8 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
         public TextView msg;
         public CircleImageView profile;
 
+        public  User user;
+
         ViewHolder(View v){
             super(v);
 
@@ -75,10 +78,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), "hii "+name.getText()+" "+msg.getText(),Toast.LENGTH_LONG).show();
                     createNewChat();
-
-
                 }
             });
 
@@ -89,6 +89,7 @@ public class ContactsAdapter extends RecyclerView.Adapter<ContactsAdapter.ViewHo
             Intent intent = new Intent(itemView.getContext(), chatDetails.class);
             intent.putExtra("profileName",name.getText());
             intent.putExtra("number",msg.getText());
+//            intent.putExtra("userVal", user);
             context.startActivity(intent);
 
 

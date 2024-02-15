@@ -28,6 +28,7 @@ import android.view.View;
 import com.example.whatsappclone.adapters.ContactsAdapter;
 import com.example.whatsappclone.adapters.UserAdapter;
 import com.example.whatsappclone.adapters.fragmentAdapter;
+import com.example.whatsappclone.models.User;
 import com.google.android.material.tabs.TabLayout;
 
 import java.security.Permission;
@@ -39,7 +40,7 @@ import android.provider.ContactsContract;
 public class ContactActivity extends AppCompatActivity {
     String[] usr={"Nikhil","Nisarga","Kundan"};
     ArrayList<String> arrayList= new ArrayList<String>(Arrays.asList(usr));
-    ArrayList<Contacts> contacts ;
+    ArrayList<User> users ;
 
     RecyclerView recyclerView;
 
@@ -47,14 +48,12 @@ public class ContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
-        contacts = new ArrayList<>();
-
-
+        users = new ArrayList<>();
 
 
         recyclerView = findViewById(R.id.recyclerContacts);
 
-        ContactsAdapter adapter = new ContactsAdapter(contacts,ContactActivity.this);
+        ContactsAdapter adapter = new ContactsAdapter(users,ContactActivity.this);
         recyclerView.setLayoutManager(new LinearLayoutManager(ContactActivity.this));
         recyclerView.setAdapter(adapter);
 
@@ -93,17 +92,17 @@ public class ContactActivity extends AppCompatActivity {
             String number = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
 
-            contacts.add(new Contacts(name,number));
+            users.add(new User(name,number));
         }
     }
-    public class Contacts{
-        public String personName;
-        public String mobileNumber;
-        Contacts(String name,String number){
-            this.personName=name;
-            this.mobileNumber = number;
-        }
-    }
+//    public class Contacts{
+//        public String personName;
+//        public String mobileNumber;
+//        Contacts(String name,String number){
+//            this.personName=name;
+//            this.mobileNumber = number;
+//        }
+//    }
 }
 
 

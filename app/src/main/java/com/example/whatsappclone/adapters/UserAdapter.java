@@ -1,6 +1,7 @@
 package com.example.whatsappclone.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -14,6 +15,9 @@ import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.whatsappclone.R;
+import com.example.whatsappclone.chatDetails;
+import com.example.whatsappclone.models.User;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,10 +26,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
-    ArrayList<String> arrayList;
+    ArrayList<User> arrayList;
     Context context;
+    User u;
 
-    public UserAdapter(ArrayList<String> array, Context context) {
+    public UserAdapter(ArrayList<User> array, Context context) {
         this.arrayList = array;
         this.context = context;
     }
@@ -40,8 +45,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull UserAdapter.ViewHolder holder, int position) {
-            holder.name.setText(arrayList.get(position));
-            holder.msg.setText("messgae");
+             u = arrayList.get((position));
+            holder.name.setText(u.getName());
+            holder.msg.setText("");
 
 
     }
@@ -62,6 +68,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
             name = itemView.findViewById(R.id.username);
             msg =  itemView.findViewById(R.id.lastmsg);
             profile = itemView.findViewById(R.id.profile_image);
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), chatDetails.class);
+                    intent.putExtra("profileName",u.getName());
+                    intent.putExtra("number",u.getMobile());
+//                    intent.putExtra("userVal", user);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }

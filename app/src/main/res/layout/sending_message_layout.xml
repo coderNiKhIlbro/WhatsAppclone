@@ -1,0 +1,37 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/senderbubble"
+        android:layout_alignParentEnd="true"
+        android:minHeight="15dp"
+        android:minWidth="50dp"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+    <TextView
+        android:id="@+id/sendingMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxWidth="250dp"
+        android:text="sssssssssssssssssssssssssssssssssssssssxxxxxxxxxxxxxxxxxxxx"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/sendingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="10sp"
+        android:layout_gravity="end" />
+
+        </LinearLayout>
+    </RelativeLayout>
